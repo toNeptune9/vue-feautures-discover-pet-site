@@ -15,9 +15,9 @@ export default defineComponent({
 
     return () =>
       h('section', { class: 'vapor-note' }, [
-        h('h2', 'TS render component (vapor style)'),
-        h('p', `Playful cats today: ${energeticCats.value}`),
-        h('p', 'This component is written completely in .ts using a render function.')
+        h('h2', 'TS render-компонент (vapor style)'),
+        h('p', `Игривых котиков сегодня: ${energeticCats.value}`),
+        h('p', 'Здесь компонент написан полностью в .ts через render function.')
       ]);
   }
 });

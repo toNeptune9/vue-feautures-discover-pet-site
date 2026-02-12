@@ -1,15 +1,12 @@
 <template>
   <article class="cat-card" v-highlight-on-hover="'#eefcff'" @click="emit('open-profile', cat.id)">
-    <img :src="cat.imageUrl" :alt="`Cat ${cat.name}`" class="cat-photo" />
+    <img :src="cat.imageUrl" :alt="`Котик ${cat.name}`" class="cat-photo" />
     <div class="cat-content">
       <h3>{{ cat.name }}</h3>
-      <p>Age: {{ formatAge(cat.age) }}</p>
-      <p>Temper: {{ temperLabel(cat.temper) }}</p>
-      <p>Traits: {{ cat.traits.join(', ') }}</p>
-      <div class="badges-row">
-        <StatusBadge :label="cat.temper" tone="neutral" />
-      </div>
-      <button class="adopt-btn" @click.stop="emit('adopt', cat)">Adopt me</button>
+      <p>Возраст: {{ formatAge(cat.age) }}</p>
+      <p>Характер: {{ temperLabel(cat.temper) }}</p>
+      <p>Сильные стороны: {{ cat.traits.join(', ') }}</p>
+      <button class="adopt-btn" @click.stop="emit('adopt', cat)">Хочу взять домой</button>
     </div>
   </article>
 </template>
@@ -18,7 +15,6 @@
 import { vHighlightOnHover } from '../directives/highlightOnHover';
 import { formatAge, temperLabel } from '../utils/catHelpers';
 import type { Cat } from '../types/cat';
-import StatusBadge from './StatusBadge';
 
 defineProps<{
   cat: Cat;
@@ -49,11 +45,6 @@ const emit = defineEmits<{
 
 .cat-content {
   padding: 10px;
-}
-
-.badges-row {
-  margin-top: 6px;
-  margin-bottom: 8px;
 }
 
 .adopt-btn {

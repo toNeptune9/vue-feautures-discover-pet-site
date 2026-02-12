@@ -1,9 +1,9 @@
 <template>
   <aside class="shelter-overview">
-    <h2>Classic script component</h2>
-    <p>Message (this.something): {{ this.something }}</p>
-    <p>Deep property: {{ this.state.property.foo.bar.baz }}</p>
-    <p>Available cats: {{ this.state.stats.available.cats }}</p>
+    <h2>Классический script компонент</h2>
+    <p>Сообщение (this.something): {{ this.something }}</p>
+    <p>Глубокое свойство: {{ this.state.property.foo.bar.baz }}</p>
+    <p>Котиков доступно: {{ this.state.stats.available.cats }}</p>
   </aside>
 </template>
 
@@ -22,7 +22,7 @@ export default defineComponent({
   },
   data() {
     return {
-      something: 'Options API demonstrates access through this'
+      something: 'Options API демонстрирует доступ через this'
     };
   }
 });
