@@ -9,10 +9,10 @@ export function formatAge(age: number): string {
 
 export function temperLabel(temper: CatTemper): string {
   const labels: Record<CatTemper, string> = {
-    playful: 'Игривый',
-    calm: 'Спокойный',
-    curious: 'Любопытный',
-    sleepy: 'Соня'
+    playful: 'Playful',
+    calm: 'Calm',
+    curious: 'Curious',
+    sleepy: 'Sleepy'
   };
 
   return labels[temper];
