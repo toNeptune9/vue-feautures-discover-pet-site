@@ -3,13 +3,19 @@
     <header>
       <h1>{{ titleLiteral }}</h1>
       <p>{{ shelterMotto }}</p>
-      <p>Строковый literal пример: {{ statusLiteral }}</p>
+      <p>String literal example: {{ statusLiteral }}</p>
+      <StatusBadge :label="`Shelter status: ${statusLiteral}`" :tone="statusLiteral === 'open' ? 'success' : 'warning'" />
     </header>
 
     <AdoptionFilter v-model:query="query" v-model:min-age="minAge" />
 
     <ShelterOverview :state="shelterState" />
     <VaporNote :cats="filteredCats" />
+    <VaporShelterInfo />
+    <MixedScriptPanel />
+    <DeepAccessViewer :state="deepState" />
+    <ShelterRulesJs />
+    <VolunteerCardJs />
 
     <section class="cats-grid">
       <CatCard
@@ -22,7 +28,7 @@
     </section>
 
     <footer>
-      <p>Последнее действие: {{ lastAction }}</p>
+      <p>Last action: {{ lastAction }}</p>
     </footer>
   </main>
 </template>
@@ -33,54 +39,73 @@ import CatCard from './components/CatCard.vue';
 import AdoptionFilter from './components/AdoptionFilter.vue';
 import ShelterOverview from './components/ShelterOverview.vue';
 import VaporNote from './components/VaporNote';
+import StatusBadge from './components/StatusBadge';
+import ShelterRulesJs from './components/ShelterRulesJs.vue';
+import VolunteerCardJs from './components/VolunteerCardJs.vue';
+import MixedScriptPanel from './components/MixedScriptPanel.vue';
+import DeepAccessViewer from './components/DeepAccessViewer.vue';
+import VaporShelterInfo from './components/VaporShelterInfo.vue';
 import { shelterMotto, sortByAge } from './utils/catHelpers';
 import type { Cat, ShelterState } from './types/cat';
 
-const titleLiteral = 'Приют котиков «Лапка Надежды»' as const;
+const titleLiteral = 'Cat Shelter "Hope Paws"' as const;
 const statusLiteral: 'open' | 'closed' = 'open';
 
 const query = ref('');
 const minAge = ref(0);
-const lastAction = ref('Пока действий не было');
+const lastAction = ref('No actions yet');
 
 const cats = ref<Cat[]>([
   {
     id: 1,
-    name: 'Луна',
+    name: 'Luna',
     age: 2,
     temper: 'playful',
     imageUrl:
       'https://images.unsplash.com/photo-1519052537078-e6302a4968d4?auto=format&fit=crop&w=800&q=80',
     rescuedAt: '2024-06-01',
-    traits: ['социальная', 'любит мячики']
+    traits: ['social', 'loves toy balls']
   },
   {
     id: 2,
-    name: 'Марсель',
+    name: 'Marcel',
     age: 5,
     temper: 'calm',
     imageUrl:
       'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80',
     rescuedAt: '2023-12-10',
-    traits: ['ласковый', 'любит пледы']
+    traits: ['affectionate', 'loves blankets']
   },
   {
     id: 3,
-    name: 'Тучка',
+    name: 'Cloudy',
     age: 1,
     temper: 'curious',
     imageUrl:
       'https://images.unsplash.com/photo-1495360010541-f48722b34f7d?auto=format&fit=crop&w=800&q=80',
     rescuedAt: '2024-10-02',
-    traits: ['исследователь', 'любит высоту']
+    traits: ['explorer', 'likes high places']
   }
 ]);
+
+
+const deepState = {
+  property: {
+    second: {
+      smth: {
+        level4: {
+          value: 'Deep completion chain example'
+        }
+      }
+    }
+  }
+};
 
 const shelterState = computed<ShelterState>(() => ({
   property: {
     foo: {
       bar: {
-        baz: 'Демонстрация completion: property.foo.bar.baz'
+        baz: 'Completion demo: property.foo.bar.baz'
       }
     }
   },
@@ -100,11 +125,11 @@ const filteredCats = computed(() =>
 );
 
 function handleAdopt(cat: Cat): void {
-  lastAction.value = `Запрос на усыновление: ${cat.name}`;
+  lastAction.value = `Adoption request: ${cat.name}`;
 }
 
 function handleOpenProfile(catId: number): void {
-  lastAction.value = `Открыт профиль котика #${catId}`;
+  lastAction.value = `Opened cat profile #${catId}`;
 }
 </script>
 

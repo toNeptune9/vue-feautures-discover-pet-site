@@ -1,12 +1,12 @@
 <template>
   <section class="filter-panel">
     <label>
-      Поиск по имени
-      <input v-model="queryModel" v-focus type="text" placeholder="Например, Луна" />
+      Search by name
+      <input v-model="queryModel" v-focus type="text" placeholder="For example, Luna" />
     </label>
 
     <label>
-      Минимальный возраст
+      Minimum age
       <input v-model.number="ageModel" type="number" min="0" max="20" />
     </label>
   </section>

@@ -1,9 +1,9 @@
 import type { Cat, CatTemper } from '../types/cat';
 
-export const shelterMotto = 'Любовь, забота и мурчание каждый день' as const;
+export const shelterMotto = 'Love, care, and purring every day' as const;
 
 export function formatAge(age: number): string {
-  const yearWord = age === 1 ? 'год' : age < 5 ? 'года' : 'лет';
+  const yearWord = age === 1 ? 'year' : 'years';
   return `${age} ${yearWord}`;
 }
 
